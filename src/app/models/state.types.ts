@@ -12,3 +12,9 @@ export type ExtractionError = ErrorBase & (
   | { category:'network'}
   | { category:'server'}
 );
+
+export type ExtractionState =
+| { status:'idle'}
+| { status:'loading',startedAt:number }
+| { status:'success', data:ExtractResponse}
+| { status:'error', error:ExtractionError}

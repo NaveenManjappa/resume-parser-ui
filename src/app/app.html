@@ -1,1 +1,6 @@
 <h1>Hello there!</h1>
+<h2>{{ extractionState().status }}</h2>
+<textarea name="resumeText" id="resumeText" rows="10" cols="50" [(ngModel)]="resumeText"></textarea>
+<br />
+<button (click)="extract('test')">Submit</button>
+<button (click)="retry()">Retry</button>
