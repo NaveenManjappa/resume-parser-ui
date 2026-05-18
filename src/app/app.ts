@@ -4,10 +4,12 @@ import { ExtractionState } from './models/state.types';
 import { ExtractionService } from './extraction';
 import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ResumeInput } from "./resume-input/resume-input";
+import { Loading } from './loading/loading';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule],
+  imports: [FormsModule, ResumeInput,Loading],
   templateUrl: './app.html',
   styleUrl: './app.css',
   changeDetection:ChangeDetectionStrategy.OnPush
@@ -32,6 +34,10 @@ export class AppComponent {
     if(this.resumeText){
       this.extract(this.resumeText);
     }
+  }
+
+   stringify(value: unknown): string {
+    return JSON.stringify(value, null, 2);
   }
   
 }

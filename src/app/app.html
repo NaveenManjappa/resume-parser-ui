@@ -1,6 +1,29 @@
-<h1>Hello there!</h1>
-<h2>{{ extractionState().status }}</h2>
-<textarea name="resumeText" id="resumeText" rows="10" cols="50" [(ngModel)]="resumeText"></textarea>
-<br />
-<button (click)="extract('test')">Submit</button>
-<button (click)="retry()">Retry</button>
+@switch (extractionState().status) {
+  
+  @case ('idle') {
+    <app-resume-input (extract)="extract($event)"></app-resume-input>
+  }
+
+  @case ('loading') {
+    @let state = extractionState();
+    @if(state.status === 'loading'){
+    <app-loading [startedAt]="state.startedAt"></app-loading>
+    }  
+  }
+
+  @case('error'){
+
+  }
+
+  @case ('success') {
+    @let state = extractionState();
+    @if(state.status === 'success'){
+      <p>{{stringify(state.data)}}</p>
+    }
+    
+  }
+
+}
+
+  
+

@@ -20,3 +20,6 @@ export interface ExtractResponse {
   profile:CandidateProfile;
   metadata:ExtractionMetadata;
 }
+
+export const RESUME_TEXT_MIN=100;
+export const RESUME_TEXT_MAX=20000;
