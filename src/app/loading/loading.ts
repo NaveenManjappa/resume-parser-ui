@@ -25,7 +25,7 @@ export class Loading {
     } else if (seconds < 5) {
       return 'Waking up the server...';
     } else {
-      return 'Almost there - first request take take a few seconds...';
+      return 'Almost there - first request can take a few seconds...';
     }
   });
 

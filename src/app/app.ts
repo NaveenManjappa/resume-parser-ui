@@ -6,10 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ResumeInput } from "./resume-input/resume-input";
 import { Loading } from './loading/loading';
+import { Error } from './error/error';
+
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, ResumeInput,Loading],
+  imports: [FormsModule, ResumeInput,Loading,Error],
   templateUrl: './app.html',
   styleUrl: './app.css',
   changeDetection:ChangeDetectionStrategy.OnPush
@@ -27,7 +29,11 @@ export class AppComponent {
      
     this.extractionService.extract(this.resumeText)
     .pipe(takeUntilDestroyed(this.destroyRef))
-    .subscribe(result=>this.extractionState.set(result));
+    .subscribe(result=>{
+      console.log(result);
+      this.extractionState.set(result);
+      console.log(this.extractionState());
+  });
   }
 
   retry(){
