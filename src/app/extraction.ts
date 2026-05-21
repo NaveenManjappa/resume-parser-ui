@@ -36,7 +36,7 @@ export class ExtractionService {
     if(error.status === 429){
       const retryAfterHeader = error.headers.get('Retry-After');
       const parsed = retryAfterHeader ? parseInt(retryAfterHeader, 10) : NaN;
-      const retryIn = Number.isFinite(parsed) ? parsed : 60;
+      const retryIn = Number.isFinite(parsed) ? parsed : 20;
       return {
         category:'rate_limit',
         message: detail ?? 'Too many requests. Please try again later.',

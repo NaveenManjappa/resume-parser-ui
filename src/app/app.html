@@ -12,7 +12,11 @@
   }
 
   @case('error'){
-    <app-error></app-error>
+    @let state = extractionState();
+    @if(state.status === 'error'){
+      <app-error [error]="state.error" (retry)="retry()"></app-error>
+    }
+    
   }
 
   @case ('success') {

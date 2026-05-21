@@ -38,7 +38,8 @@ export class AppComponent {
 
   retry(){
     if(this.resumeText){
-      this.extract(this.resumeText);
+      //this.extract(this.resumeText);
+      this.extractionState.set({status:'idle'});
     }
   }
 
