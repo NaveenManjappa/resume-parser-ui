@@ -7,11 +7,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ResumeInput } from "./resume-input/resume-input";
 import { Loading } from './loading/loading';
 import { Error } from './error/error';
+import { Metrics } from './metrics/metrics';
 
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, ResumeInput,Loading,Error],
+  imports: [FormsModule, ResumeInput,Loading,Error,Metrics],
   templateUrl: './app.html',
   styleUrl: './app.css',
   changeDetection:ChangeDetectionStrategy.OnPush
