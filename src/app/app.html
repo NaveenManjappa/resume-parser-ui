@@ -23,7 +23,7 @@
     @let state = extractionState();
     @if(state.status === 'success'){
       @let data = state.data;
-    
+      <app-result [data]="data"></app-result>
     }
     
   }

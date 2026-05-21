@@ -1,0 +1,41 @@
+.tab-bar {
+  display: flex;
+  flex: 0.5rem;
+  border-bottom: 1px solid #ddd;
+  margin:1rem 0;
+}
+
+.tab-bar button {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #666;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.tab-bar button:hover {
+  color: #333;
+}
+
+.tab-bar button.active {
+  color: #000;
+  border-bottom-color: #333;
+  font-weight: 500;
+}
+
+.tab-content {
+  padding-top: 1rem;
+}
+
+.json-view {
+  background: #f8f8f8;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: ui-monospace,monospace;
+  font-size: 0.875rem;
+  line-height:1.5;
+}

@@ -9,11 +9,12 @@ import { Loading } from './loading/loading';
 import { Error } from './error/error';
 import { Metrics } from './metrics/metrics';
 import { ResumeViewer } from './resume-viewer/resume-viewer';
+import { Result } from './result/result';
 
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, ResumeInput,Loading,Error,Metrics,ResumeViewer],
+  imports: [FormsModule, ResumeInput,Loading,Error,Metrics,ResumeViewer,Result],
   templateUrl: './app.html',
   styleUrl: './app.css',
   changeDetection:ChangeDetectionStrategy.OnPush

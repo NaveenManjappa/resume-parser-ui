@@ -1,0 +1,28 @@
+@let d = data();
+<app-metrics [metadata]="d.metadata"></app-metrics>
+<div class="tab-bar">
+  <button
+  type="button"
+  [class.active]="activeTab() === 'structured'"
+  (click)="setTab('structured')"
+  >Structured</button>
+  <button 
+  type="button"
+  [class.active]="activeTab() === 'json'"
+  (click)="setTab('json')"
+  >
+    Raw JSON
+  </button>
+</div>
+
+<div class="tab-content">
+  @switch (activeTab()) {
+    @case('structured'){
+      <app-resume-viewer [profile]="d.profile"/>
+    }
+
+    @case('json'){
+      <pre class="json-view">{{jsonText()}}</pre>
+    }
+  }
+</div>
