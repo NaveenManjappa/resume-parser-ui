@@ -1,0 +1,56 @@
+@let p = profile();
+
+<article class="resume">
+  <section class="identity">
+    <div class="field">
+      <span class="label">Full name</span>
+      <span class="value">{{ p.full_name ?? '-' }}</span>
+    </div>
+    <div class="field">
+      <span class="label">Current title</span>
+      <span class="value">{{ p.current_title ?? '-' }}</span>
+    </div>
+    <div class="field">
+      <span class="label">Email</span>
+      <span class="value">{{ p.email ?? '-' }}</span>
+    </div>
+    <div class="field">
+      <span class="label">LinkedIn</span>
+      <span class="value">
+        @if (p.linkedin_url) {
+          <a [href]="p.linkedin_url" target="_blank" rel="noopener">{{ p.linkedin_url }}</a>
+        } @else {
+          -
+        }
+      </span>
+    </div>
+  </section>
+
+  <section class="experience">
+    <div class="field">
+      <span class="label">Years of experience</span>
+      <span class="value">{{ p.years_of_experience ?? '-' }}</span>
+    </div>
+    @if (p.years_of_experience_source.length > 0) {
+      <p class="source">Source: {{ p.years_of_experience_source }}</p>
+    }
+  </section>
+
+  <section class="skills">
+    <h3>Skills</h3>
+    @if (p.skills && p.skills.length > 0) {
+      <ul class="skills-list">
+        @for (skill of p.skills; track skill) {
+          <li class="skill-pill">{{ skill }}</li>
+        }
+      </ul>
+    } @else {
+      <p class="empty">-</p>
+    }
+  </section>
+
+  <section class="summary">
+    <h3>Summary</h3>
+    <p>{{ p.summary ?? '-' }}</p>
+  </section>
+</article>

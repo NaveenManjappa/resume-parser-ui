@@ -1,0 +1,47 @@
+.resume {
+  display:flex;
+  flex-direction: column;
+  gap:1.5rem;
+}
+
+.resume section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.field {
+  display: flex;
+  gap: 0.5rem;
+}
+.label {
+  font-weight: 600;
+  min-width: 8rem;
+  color: #444;
+}
+.value {
+  flex: 1;
+}
+.source {
+  font-style: italic;
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0;
+}
+.empty {
+  color: #999;
+}
+.skills-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-pill {
+  padding: 0.25rem 0.75rem;
+  background:#f0f0f0;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+}
