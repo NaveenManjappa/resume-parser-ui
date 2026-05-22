@@ -14,7 +14,7 @@ import { Result } from './result/result';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, ResumeInput,Loading,Error,Metrics,ResumeViewer,Result],
+  imports: [FormsModule, ResumeInput,Loading,Error,Result],
   templateUrl: './app.html',
   styleUrl: './app.css',
   changeDetection:ChangeDetectionStrategy.OnPush
