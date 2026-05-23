@@ -49,5 +49,10 @@ export class AppComponent {
    stringify(value: unknown): string {
     return JSON.stringify(value, null, 2);
   }
+
+  reset(){
+    this.resumeText = '';
+    this.extractionState.set({status:'idle'});
+  }
   
 }

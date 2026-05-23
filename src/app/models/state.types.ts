@@ -18,3 +18,9 @@ export type ExtractionState =
 | { status:'loading',startedAt:number }
 | { status:'success', data:ExtractResponse}
 | { status:'error', error:ExtractionError}
+
+export type ParseState = 
+| { status:'idle'}
+| { status:'parsing'}
+| { status:'error', message:string}
+

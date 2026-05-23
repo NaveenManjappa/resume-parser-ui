@@ -10,7 +10,7 @@ import { ExtractionError } from '../models/state.types';
 export class Error {
   readonly error = input.required<ExtractionError>();
   readonly retry = output<void>();
-  
+  readonly reset = output<void>();
   readonly elapsed = signal(0);
 
   constructor() {

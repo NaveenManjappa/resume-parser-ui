@@ -5,6 +5,7 @@
       <p>The resume text did not parse as expected.Try editing it and resubmitting.</p>
       <p class="detail">{{error().message}}</p>
       <button (click)="onRetry()">Retry</button>
+      <button (click)="reset.emit()">Start over</button>
     }
 
     @case('server'){
@@ -12,6 +13,7 @@
       <p>The server hit an error processing your request</p>
       <p class="detail">{{error().message}}</p>
       <button (click)="onRetry()">Retry</button>
+      <button (click)="reset.emit()">Start over</button>
     }
 
     @case('rate_limit'){
@@ -25,6 +27,7 @@
           Retry in {{secondsRemaining()}}s
         }
       </button>
+      <button (click)="reset.emit()">Start over</button>
     }
 
     @case('network'){
@@ -32,6 +35,7 @@
       <p>The request could not connect. The server might be waking up - try again.</p>
       <p class="detail">{{error().message}}</p>
       <button (click)="onRetry()">Retry</button>
+      <button (click)="reset.emit()">Start over</button>
     }
   }
 </div>

@@ -1,5 +1,25 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <label for="resume-text">Paste your resume text</label>
+
+  <div class="file-upload">
+    <label for="resume-file" class="file-button">
+      Or upload a PDF
+    </label>
+    <input type="file" id="resume-file" accept="application/pdf" (change)="onFileSelected($event)" [disabled]="parseState().status === 'parsing'" hidden />
+  
+
+  @if (parseState().status === 'parsing'){
+    <span class="parse-status">Parsing PDF...</span>
+  }
+
+  @if(parseState().status === 'error'){
+    @let s = parseState();
+    @if(s.status === 'error'){
+      <span class="parse-error">{{s.message}}</span>
+    }
+  }
+</div>
+
   <textarea
     id="resume-text"
     formControlName="resumeText"
@@ -12,5 +32,6 @@
       Please paste between {{ minLength }} and {{ maxLength }} characters.
     </p>
   }
+
   <button type="submit" [disabled]="form.invalid">Extract</button>
 </form>

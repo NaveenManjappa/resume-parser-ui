@@ -1,0 +1,30 @@
+.file-upload {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+}
+
+.file-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.file-button:hover {
+  background: #e5e5e5;
+}
+.parse-status {
+  font-size:0.875rem;
+  color: #666;
+  font-style: italic;
+}
+
+.parse-error {
+  font-size: 0.875rem;
+  color: #c00;
+}
