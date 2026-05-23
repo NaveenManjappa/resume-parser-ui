@@ -1,41 +1,58 @@
-<div class="error-container" role="alert">
+﻿<div class="card error-card">
   @switch (error().category) {
+
     @case('validation'){
-      <h2>We could not process that input</h2>
-      <p>The resume text did not parse as expected.Try editing it and resubmitting.</p>
-      <p class="detail">{{error().message}}</p>
-      <button (click)="onRetry()">Retry</button>
-      <button (click)="reset.emit()">Start over</button>
+      <div class="error-icon error-icon--warn">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.165-.17 2.63-1.516 2.63H3.72c-1.347 0-2.189-1.465-1.516-2.63L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+      </div>
+      <h2 class="error-title">Could not process that input</h2>
+      <p class="error-body">The resume text did not parse as expected. Try editing it and resubmitting.</p>
+      <p class="error-detail">{{error().message}}</p>
+      <div class="error-actions">
+        <button class="btn-primary" (click)="onRetry()">Retry</button>
+        <button class="btn-ghost" (click)="reset.emit()">Start over</button>
+      </div>
     }
 
     @case('server'){
-      <h2>Something went wrong on our end</h2>
-      <p>The server hit an error processing your request</p>
-      <p class="detail">{{error().message}}</p>
-      <button (click)="onRetry()">Retry</button>
-      <button (click)="reset.emit()">Start over</button>
+      <div class="error-icon error-icon--error">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd"/></svg>
+      </div>
+      <h2 class="error-title">Something went wrong on our end</h2>
+      <p class="error-body">The server hit an error processing your request.</p>
+      <p class="error-detail">{{error().message}}</p>
+      <div class="error-actions">
+        <button class="btn-primary" (click)="onRetry()">Retry</button>
+        <button class="btn-ghost" (click)="reset.emit()">Start over</button>
+      </div>
     }
 
     @case('rate_limit'){
-      <h2>Rate limit reached</h2>
-      <p>You have made too many requests. Rerty in {{secondsRemaining()}} s.</p>
-      <p class="detail">{{ error().message}}</p>
-      <button [disabled]="!canRetry()" (click)="onRetry()">
-        @if (canRetry()){
-          Rerty Now
-        } @else {
-          Retry in {{secondsRemaining()}}s
-        }
-      </button>
-      <button (click)="reset.emit()">Start over</button>
+      <div class="error-icon error-icon--warn">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z" clip-rule="evenodd"/></svg>
+      </div>
+      <h2 class="error-title">Rate limit reached</h2>
+      <p class="error-body">You have made too many requests. Retry in {{secondsRemaining()}}s.</p>
+      <p class="error-detail">{{ error().message }}</p>
+      <div class="error-actions">
+        <button class="btn-primary" [disabled]="!canRetry()" (click)="onRetry()">
+          @if (canRetry()){ Retry Now } @else { Retry in {{secondsRemaining()}}s }
+        </button>
+        <button class="btn-ghost" (click)="reset.emit()">Start over</button>
+      </div>
     }
 
     @case('network'){
-      <h2>Can't reach the server</h2>
-      <p>The request could not connect. The server might be waking up - try again.</p>
-      <p class="detail">{{error().message}}</p>
-      <button (click)="onRetry()">Retry</button>
-      <button (click)="reset.emit()">Start over</button>
+      <div class="error-icon error-icon--error">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+      </div>
+      <h2 class="error-title">Can&rsquo;t reach the server</h2>
+      <p class="error-body">The request could not connect. The server might be waking up &mdash; try again.</p>
+      <p class="error-detail">{{error().message}}</p>
+      <div class="error-actions">
+        <button class="btn-primary" (click)="onRetry()">Retry</button>
+        <button class="btn-ghost" (click)="reset.emit()">Start over</button>
+      </div>
     }
   }
 </div>

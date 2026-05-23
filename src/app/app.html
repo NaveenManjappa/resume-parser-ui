@@ -1,34 +1,68 @@
-@switch (extractionState().status) {
-  
-  @case ('idle') {
-    <app-resume-input (extract)="extract($event)"></app-resume-input>
-  }
+<div class="app-shell">
+  <header class="app-header">
+    <div class="app-header__inner">
+      <div class="app-header__brand">
+        <svg
+          class="app-header__icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect x="3" y="2" width="13" height="18" rx="2" fill="currentColor" opacity="0.15" />
+          <path
+            d="M6 7h8M6 11h8M6 15h5"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+          <circle cx="18" cy="17" r="4" fill="currentColor" opacity="0.2" />
+          <path
+            d="M16.5 17l1 1 2-2"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span class="app-header__title">Resume Parser</span>
+      </div>
+      <p class="app-header__subtitle">AI-powered candidate data extraction</p>
+    </div>
+  </header>
 
-  @case ('loading') {
-    @let state = extractionState();
-    @if(state.status === 'loading'){
-    <app-loading [startedAt]="state.startedAt"></app-loading>
-    }  
-  }
+  <main class="app-main">
+    <div class="app-content">
+      @switch (extractionState().status) {
+        @case ('idle') {
+          <app-resume-input (extract)="extract($event)"></app-resume-input>
+        }
 
-  @case('error'){
-    @let state = extractionState();
-    @if(state.status === 'error'){
-      <app-error [error]="state.error" (retry)="retry()"></app-error>
-    }
-    
-  }
+        @case ('loading') {
+          @let state = extractionState();
+          @if (state.status === 'loading') {
+            <app-loading [startedAt]="state.startedAt"></app-loading>
+          }
+        }
 
-  @case ('success') {
-    @let state = extractionState();
-    @if(state.status === 'success'){
-      @let data = state.data;
-      <app-result [data]="data" (reset)="reset()"></app-result>
-    }
-    
-  }
+        @case ('error') {
+          @let state = extractionState();
+          @if (state.status === 'error') {
+            <app-error [error]="state.error" (retry)="retry()" (reset)="reset()"></app-error>
+          }
+        }
 
-}
+        @case ('success') {
+          @let state = extractionState();
+          @if (state.status === 'success') {
+            @let data = state.data;
+            <app-result [data]="data" (reset)="reset()"></app-result>
+          }
+        }
+      }
+    </div>
+  </main>
 
-  
-
+  <footer class="app-footer">
+    <p>Paste or upload a resume &mdash; get structured data back instantly.</p>
+  </footer>
+</div>

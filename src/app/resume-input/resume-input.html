@@ -1,37 +1,58 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <label for="resume-text">Paste your resume text</label>
+﻿<div class="card">
+  <div class="input-header">
+    <h2 class="input-title">Extract resume data</h2>
+    <p class="input-subtitle">Paste resume text below or upload a PDF file.</p>
+  </div>
 
-  <div class="file-upload">
-    <label for="resume-file" class="file-button">
-      Or upload a PDF
-    </label>
-    <input type="file" id="resume-file" accept="application/pdf" (change)="onFileSelected($event)" [disabled]="parseState().status === 'parsing'" hidden />
-  
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="input-form">
 
-  @if (parseState().status === 'parsing'){
-    <span class="parse-status">Parsing PDF...</span>
-  }
+    <div class="form-field">
+      <div class="form-field__top">
+        <label for="resume-text" class="form-label">Resume text</label>
+        <div class="file-upload">
+          <label for="resume-file" class="file-button">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 10.5V13h10v-2.5M8 2v7M5.5 4.5L8 2l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Upload PDF
+          </label>
+          <input type="file" id="resume-file" accept="application/pdf"
+            (change)="onFileSelected($event)"
+            [disabled]="parseState().status === 'parsing'"
+            hidden />
 
-  @if(parseState().status === 'error'){
-    @let s = parseState();
-    @if(s.status === 'error'){
-      <span class="parse-error">{{s.message}}</span>
-    }
-  }
+          @if (parseState().status === 'parsing'){
+            <span class="parse-status">
+              <span class="parse-spinner"></span>
+              Parsing PDF&hellip;
+            </span>
+          }
+
+          @if(parseState().status === 'error'){
+            @let s = parseState();
+            @if(s.status === 'error'){
+              <span class="parse-error">{{s.message}}</span>
+            }
+          }
+        </div>
+      </div>
+
+      <textarea
+        id="resume-text"
+        formControlName="resumeText"
+        rows="12"
+        placeholder="Paste the full resume text here&hellip;"
+        [attr.aria-invalid]="showError() ? 'true' : null"
+        [attr.aria-describedby]="showError() ? 'resume-text-error' : null"
+      ></textarea>
+
+      @if (showError()) {
+        <p id="resume-text-error" class="field-error" role="alert">
+          Please paste between {{ minLength }} and {{ maxLength }} characters.
+        </p>
+      }
+    </div>
+
+    <button type="submit" class="btn-primary" [disabled]="form.invalid">Extract data</button>
+  </form>
 </div>
-
-  <textarea
-    id="resume-text"
-    formControlName="resumeText"
-    rows="12"
-    [attr.aria-invalid]="showError() ? 'true' : null"
-    [attr.aria-describedby]="showError() ? 'resume-text-error' : null"
-  ></textarea>
-  @if (showError()) {
-    <p id="resume-text-error" role="alert">
-      Please paste between {{ minLength }} and {{ maxLength }} characters.
-    </p>
-  }
-
-  <button type="submit" [disabled]="form.invalid">Extract</button>
-</form>

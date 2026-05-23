@@ -1,7 +1,9 @@
-@let p = profile();
+﻿@let p = profile();
 
 <article class="resume">
+
   <section class="identity">
+    <h3>Contact</h3>
     <div class="field">
       <span class="label">Full name</span>
       <span class="value">{{ p.full_name ?? '-' }}</span>
@@ -27,8 +29,9 @@
   </section>
 
   <section class="experience">
+    <h3>Experience</h3>
     <div class="field">
-      <span class="label">Years of experience</span>
+      <span class="label">Years of exp.</span>
       <span class="value">{{ p.years_of_experience ?? '-' }}</span>
     </div>
     @if (p.years_of_experience_source.length > 0) {
@@ -53,4 +56,5 @@
     <h3>Summary</h3>
     <p>{{ p.summary ?? '-' }}</p>
   </section>
+
 </article>
